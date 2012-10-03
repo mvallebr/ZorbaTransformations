@@ -1,0 +1,17 @@
+import module namespace jn = "http://www.jsoniq.org/functions";
+
+declare variable $inputdoc external;
+
+let $sats := jn:parse-json($inputdoc)("satellites")
+return {
+  "visible" : [
+     for $sat in jn:keys($sats)
+     where $sats($sat)("visible")
+     return $sat
+  ],
+  "invisible" : [
+     for $sat in jn:keys($sats)
+     where not($sats($sat)("visible"))
+     return $sat
+  ]
+}
