@@ -1,5 +1,3 @@
-import module namespace jn = "http://www.jsoniq.org/functions";
-
 declare variable $inputdoc external;
 
 let $sats := jn:parse-json($inputdoc)("satellites")
